@@ -18,6 +18,10 @@ return {
       filtered_items = {
         visible = true,
       },
+      never_show = {
+        '.DS_Store',
+        'thumbs.db',
+      },
       window = {
         mappings = {
           ['\\'] = 'close_window',
