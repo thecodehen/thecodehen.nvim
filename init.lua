@@ -922,7 +922,9 @@ require('lazy').setup({
       require('mini.surround').setup()
 
       -- Session management
-      require('mini.sessions').setup()
+      require('mini.sessions').setup {
+        autoread = true,
+      }
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
