@@ -166,6 +166,9 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Vertical column
+vim.o.colorcolumn = '80'
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -865,7 +868,6 @@ require('lazy').setup({
           copilot = {
             name = 'copilot',
             module = 'blink-cmp-copilot',
-            kind = 'Copilot',
             score_offset = 100,
             async = true,
             transform_items = function(_, items)
@@ -916,6 +918,10 @@ require('lazy').setup({
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme 'tokyonight-night'
+
+      -- Set the background color for the ColorColumn to match the CursorLine
+      local color = vim.api.nvim_get_hl(0, { name = 'CursorLine' })
+      vim.api.nvim_set_hl(0, 'ColorColumn', { bg = string.format('#%06x', color.bg) })
     end,
   },
 
