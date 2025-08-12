@@ -703,6 +703,7 @@ require('lazy').setup({
             },
           },
         },
+        tailwindcss = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -775,6 +776,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'black' },
+        htmldjango = { 'djlint' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -859,6 +861,9 @@ require('lazy').setup({
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
         documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        ghost_text = {
+          enabled = true, -- Show ghost text in the editor
+        },
       },
 
       sources = {
@@ -1013,6 +1018,7 @@ require('lazy').setup({
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   require 'plugins.copilot',
+  require 'plugins.tailwind-tools',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
