@@ -774,9 +774,10 @@ require('lazy').setup({
         end
       end,
       formatters_by_ft = {
+        htmldjango = { 'djlint' },
+        javascript = { 'prettierd' },
         lua = { 'stylua' },
         python = { 'black' },
-        htmldjango = { 'djlint' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
