@@ -169,6 +169,11 @@ vim.o.confirm = true
 -- Vertical column
 vim.o.colorcolumn = '80'
 
+-- Line numbers
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.signcolumn = 'number'
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
