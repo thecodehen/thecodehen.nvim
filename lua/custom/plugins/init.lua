@@ -3,5 +3,6 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  require 'custom.plugins.iron',
+  require 'custom.plugins.image',
+  require 'custom.plugins.molten',
 }
