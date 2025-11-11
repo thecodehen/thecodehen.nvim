@@ -5,4 +5,5 @@
 return {
   require 'custom.plugins.image',
   require 'custom.plugins.molten',
+  require 'custom.plugins.quarto',
 }
