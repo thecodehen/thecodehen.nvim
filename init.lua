@@ -1027,7 +1027,6 @@ require('lazy').setup({
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   require 'plugins.copilot',
-  require 'plugins.tailwind-tools',
   require 'plugins.debugging',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
