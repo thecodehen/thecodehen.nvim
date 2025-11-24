@@ -2,12 +2,16 @@ return {
   {
     'benlubas/molten-nvim',
     version = '^1.0.0', -- use version <2.0.0 to avoid breaking changes
-    dependencies = { '3rd/image.nvim' },
+    ft = { 'python', 'markdown', 'quarto', 'json' },
+    dependencies = {
+      '3rd/image.nvim',
+      { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', lazy = true },
+    },
     build = ':UpdateRemotePlugins',
     init = function()
       -- these are examples, not defaults. Please see the readme
       vim.g.molten_image_provider = 'image.nvim'
-      vim.g.molten_output_win_max_height = 20
+      vim.g.molten_output_win_max_height = 50
       --
       -- I find auto open annoying, keep in mind setting this option will require setting
       -- a keybind for `:noautocmd MoltenEnterOutput` to open the output again
@@ -23,6 +27,8 @@ return {
       -- this will make it so the output shows up below the \`\`\` cell delimiter
       vim.g.molten_virt_lines_off_by_1 = true
 
+      vim.g.molten_virt_text_max_lines = 8192
+
       -- don't change the mappings (unless it's related to your bug)
       vim.keymap.set('n', '<localleader>e', ':MoltenEvaluateOperator<CR>')
       vim.keymap.set('n', '<localleader>os', ':noautocmd MoltenEnterOutput<CR>')
@@ -33,12 +39,16 @@ return {
       vim.keymap.set('n', '<localleader>oh', ':MoltenHideOutput<CR>')
       vim.keymap.set('n', '<localleader>md', ':MoltenDelete<CR>')
 
+      -- kernel functions
+      vim.keymap.set('n', '<localleader>mk', ':MoltenInterrupt<CR>', { desc = 'interrupt kernel' })
+      vim.keymap.set('n', '<localleader>mr', ':MoltenRestart<CR>', { desc = 'restart kernel' })
+
       -- if you work with html outputs:
-      vim.keymap.set('n', '<localleader>mx', ':MoltenOpenInBrowser<CR>', { desc = 'open output in browser', silent = true })
+      vim.keymap.set('n', '<localleader>mx', ':MoltenOpenInBrowser<CR>', { desc = 'open output in browser' })
 
       vim.keymap.set('n', '<localleader>c', function()
-        local start_line = vim.fn.search('^# %%', 'bnW')
-        local end_line = vim.fn.search('^# %%', 'nW')
+        local start_line = vim.fn.search('^```', 'bnW')
+        local end_line = vim.fn.search('^```', 'nW')
         if end_line == 0 then
           -- go to end of file
           end_line = vim.fn.line '$' + 1
